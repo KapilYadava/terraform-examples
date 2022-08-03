@@ -14,24 +14,31 @@
     tf plan - check error before apply changes 
     tf apply - create and update resources (tfstate, tfstate.backup, and lock.hcl files created)
     tf destroy - delete all created resources
+    tf destroy <res-name> - delete specific resource
     tf show - show terraform state
     tf provider - see required provider
     tf output - show output variable 
     tf output <output-name>
+    tf fmt - formate tf files
+    tf state list - check created resource
+    tf state pull | jq . - pull state file
+    tf state pull | jq '.resources[] | select(.type== "azurerm_storage_account")' - select only type storage account
+    tf state pull | jq '.resources[] | select(.type== "azurerm_storage_account") | .instances[].attributes.access_tier' - show only access tier from storage account
+    tf state rm <res-name> - remove resource from state file
 
 # Multiple ways to supply input variable
 1. using TF_VAR (envrionment variables)
-    $ export TF_VAR_<input-name1>="<value1>"
-    $ export TF_VAR_<input-name2>="<value2>"
-    tf apply
+        $ export TF_VAR_<input-name1>="<value1>"
+        $ export TF_VAR_<input-name2>="<value2>"
+        tf apply
 
 2. Using terraform.tfvars
-    tf apply -var-file variables.tfvars
+        tf apply -var-file variables.tfvars
 
 3. using *.auto.tfvars 
 
 4. using var
-    tf apply -var "<input-name1=value1>" -var "<input-name2=value2>"  (mutlple var can defined)
+        tf apply -var "<input-name1=value1>" -var "<input-name2=value2>"  (mutlple var can defined)
 
 
 # Varible Defination Percedence 
