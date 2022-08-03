@@ -1,3 +1,18 @@
+terraform {
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+      version = "~> 2.2.0"
+      //version = "< 2.2.0, > 2.0.0, !=2.2.3"
+
+    }
+  }
+}
+
+provider "local" {
+  # Configuration options
+}
+
 resource "local_file" "name" {
     filename = each.value
     for_each = toset(var.user-texts)

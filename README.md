@@ -1,5 +1,14 @@
+# Terraform basic types
+1. string
+2. number
+3. bool
+4. list -> list(string), list(number), list(bool)
+5. set -> set(string), set(number), set(bool)
+6. map -> set (string), map(number), map(bool)
+7. tuble -> similar to list but contains hetrogenuos types
+
 # Terraform Basic Commands
-    alias tf=Terraform
+    alias tf=terraform
     tf init - install provider plugins
     tf validate - validate changes
     tf plan - check error before apply changes 
@@ -25,7 +34,7 @@
     tf apply -var "<input-name1=value1>" -var "<input-name2=value2>"  (mutlple var can defined)
 
 
-# Varible Definatin Percedence 
+# Varible Defination Percedence 
 
 Top to Bottom (first)
 1. Environment Varibale
@@ -38,5 +47,19 @@ Top to Bottom (first)
 1. create_before_destroy = true/false
 2. prevent_destroy = true/false
 3. ingnore_changes = [ tags] or all
+
+# Version constrains
+
+terraform {
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+       version = "~> 2.2.0"
+      //version = "< 2.2.0, > 2.0.0, !=2.2.3"
+    }
+  }
+}
+
+1. tf init -upgrade
 
 Note: tfstate.lock.info file is created for mutual exclusion during plan and apply.
