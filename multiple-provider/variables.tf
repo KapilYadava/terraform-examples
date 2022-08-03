@@ -23,5 +23,5 @@ variable "prefix" {
 }
 
 variable "separator" {
-  default = "."
+  default = ". "
 }
